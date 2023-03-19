@@ -2,7 +2,6 @@
     @foreach ($products as $product)
         <tr class="">
             <td><input type="checkbox" name="" id=""></td>
-            <td>{{ $product->id }}</td>
             <td>{{ $product->title }}</td>
             <td>{{ $product->prix }}</td>
             <td>{{ $product->Qte }}</td>
@@ -20,7 +19,6 @@
 @else
     @foreach ($products as $product)
         <tr class="">
-            <td>{{ $product->id }}</td>
             <td>{{ $product->title }}</td>
             <td>{{ $product->ImgPath }}</td>
             <td>{{ $product->Description }}</td>

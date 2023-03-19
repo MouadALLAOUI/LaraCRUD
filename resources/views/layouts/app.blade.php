@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
     <nav id="app" class="d-flex bg-dark justify-content-center align-items-end shadow-sm" data-bs-theme="dark">
         <ul class="nav nav-tabs">
             <li class="nav-item links">
@@ -36,9 +35,9 @@
                 <a class="nav-link link-light" href="{{ route('products.index') }}"><i class="fa fa-table"
                         aria-hidden="true"></i></a>
             </li>
-            <li class="nav-item links">
+            {{-- <li class="nav-item links">
                 <a class="nav-link link-light" href="/fallback/error"><i class="fas fa-circle-exclamation"></i></a>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown links">
                 @guest
                     <a class="nav-link dropdown-toggle text-danger" data-bs-toggle="dropdown" href="#" role="button"
@@ -84,13 +83,12 @@
         </ul>
     </nav>
 
-
-    <main class="h-75s full-height">
+    <main class="mb-3 full-height">
         <div class="d-flex mt-1">
             @guest
             @else
                 <div class="sidebar flex-shrink-1">
-                    <ul>
+                    <ol class="list-group list-group-numbered">
                         @if (auth()->user()->role == 'admin')
                             <li class="links"><a href="{{ route('products.create') }}">create new</a></li>
                             <hr class="m-1">
@@ -98,17 +96,18 @@
                         @php
                             $products = DB::select('select * from products');
                             foreach ($products as $product) {
-                                echo "<li  class=\"links\"><a href=\"" . route('products.show', $product->id) . '"">' . $product->id . ' ' . $product->title . '</a></li>';
+                                echo "<li  class=\"links list-group-item\"><a href=\"" . route('products.show', $product->id) . '"">' . $product->title . '</a></li>';
                             }
                         @endphp
-                    </ul>
+                    </ol>
                 </div>
             @endguest
-            <div class="flex-grow-1 text-center">
+            <div class="flex-grow-1 p-2 text-center">
                 @yield('content')
             </div>
         </div>
     </main>
+
     <footer>
         <div class="p-3 container-fluid bg bg-dark text-center text-light position-relative bottom-0">
             <i class="fa fa-copyright" aria-hidden="true"></i> copyright 2023

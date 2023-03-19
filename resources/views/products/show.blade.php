@@ -6,28 +6,25 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2> Show Product</h2>
-            </div>
-            <div class="pull-right">
-                {{-- <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a> --}}
-            </div>
-        </div>
-    </div>
+    <div class="card">
+        <h3 class="card-header text-uppercase"> Show Product </h3>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <ul>
-                    <li>{{ $product->id }}</li>
-                    <li>{{ $product->title }}</li>
-                    <li>{{ $product->ImgPath }}</li>
-                    <li>{{ $product->Description }}</li>
-                    <li>{{ $product->prix }}</li>
-                    <li>{{ $product->Qte }}</li>
-                </ul>
+        <div class="card-body bg-light p-3 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ asset($product->ImgPath) }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title">Title : {{ $product->title }}</h2>
+                    <h4 class="card-text">Description : {{ $product->Description }}</h4>
+                    <h5 class="card-text">price : {{ $product->prix }}</h5>
+                    <button type="submit" class="btn btn-success">buy</button>
+                </div>
             </div>
         </div>
-    @endsection
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">edit</a>
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+    </div>
+@endsection

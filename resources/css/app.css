@@ -113,14 +113,13 @@ select {
     text-transform: none;
 }
 
-[type="button"],
-[type="reset"],
-[type="submit"],
-button {
+
+/* [type="reset"],
+[type="submit"] {
     -webkit-appearance: button;
     background-color: transparent;
     background-image: none;
-}
+} */
 
 :-moz-focusring {
     outline: auto;
@@ -819,12 +818,13 @@ video {
 .sidebar {
     height: 82vh;
     width: 20%;
+    background-color: #fff;
     overflow: auto;
 }
 
 html,
 body {
-    background-color: #fff;
+    background-color: #d2ced4;
     color: #636b6f;
     font-family: "Nunito", sans-serif;
     font-weight: 200;
@@ -833,7 +833,7 @@ body {
 }
 
 .full-height {
-    height: 80%;
+    height: 80vh;
 }
 
 .flex-center {

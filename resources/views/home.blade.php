@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="flex-grow-1 p-3 text-center bg-dark text-light">
+    <div class="card container">
+        <h5 class="card-header text-uppercase">
+            @guest
+                Welcome to Stock Manager
+            @else
+                Welcome {{ auth()->user()->name }}
+            @endguest
+        </h5>
+        <div class="card-body bg-dark text-light p-3">
             @guest
                 <h1 class="text-uppercase">Welcome to Stock Manager</h1>
                 <p>You're not regestred</p>
