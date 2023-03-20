@@ -37,18 +37,23 @@ class ProductsController extends Controller
             'prix' => 'required',
             'Qte' => 'required',
         ]);
-        if ($request->hasFile('file') && $request->file('file')->isValid()) {
-            $file_ext = $request->ImgPath->getClientOriginalExtension();
-            $file_name = "product_"  . $request->title . '_' . $request->id . "." . $file_ext;
-            $path = 'uploads';
-            $request->ImgPath->move($path, $file_name);
-            $ImgPath = $path . '/' . $file_name;
+        if ($request->hasFile('ImgPath')) {
+            $file = $request->file('ImgPath');
+
+            // Generate a unique filename
+            $filename = 'product_' . $request->title . '_' . $request->id . '.' . $file->getClientOriginalExtension();
+
+            // Move the file to the target directory
+            $file->move(public_path('uploads'), $filename);
+
+            // Set the image path for the product
+            $imgpath = 'uploads/' . $filename;
         } else {
-            $ImgPath = "null";
+            $imgpath =  "-";
         }
         Product::create([
             'title' => $request->title,
-            'ImgPath' => $ImgPath,
+            'ImgPath' => $imgpath,
             'Description' => $request->Description ?? "-",
             'prix' => $request->prix,
             'Qte' => $request->Qte,
